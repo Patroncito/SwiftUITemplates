@@ -8,11 +8,45 @@
 import SwiftUI
 
 struct PrimaryButton: View {
+    
+    let title: String
+    let size: ComponentSize
+    let action: () -> Void
+    
+    init(_ title: String, size: ComponentSize = .medium, action: @escaping () -> Void) {
+        self.title = title
+        self.size = size
+        self.action = action
+    }
+    
     var body: some View {
-        Text(/*@START_MENU_TOKEN@*/"Hello, World!"/*@END_MENU_TOKEN@*/)
+        Button(action: action) {
+                Text(title)
+                .font(size.font)
+                .foregroundStyle(.white)
+                .padding(.vertical, size.verticalPadding)
+                .padding(.horizontal, size.horizontalPadding)
+                .frame(maxWidth: .infinity)
+
+        }
+        .background(.cyan)
+        .clipShape(Capsule())
     }
 }
 
-#Preview {
-    PrimaryButton()
+#Preview("PrimaryButton") {
+    VStack(spacing: 16) {
+        
+        PrimaryButton("Continuar") {
+            print("Mediano")
+        }
+        
+        PrimaryButton("Pequeño", size: .small) {
+            print("Pequeño") }
+        
+        PrimaryButton("Grande", size: .large) {
+            print("grande") }
+        
+    }
+    .padding()
 }
