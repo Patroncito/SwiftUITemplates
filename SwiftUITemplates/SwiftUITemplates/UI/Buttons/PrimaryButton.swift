@@ -32,21 +32,21 @@ struct PrimaryButton: View {
             HStack{
                 switch iconPosition {
                 case .left:
+                    Text(title)
                     if let icon {
-                        icon
-                            .resizable()
-                            .scaledToFit()
-                            .frame(width: size.imageSize, height: size.imageSize)
-                        Text(title)
-                    }
-                case .right:
-                    if let icon {
-                        Text(title)
                         icon
                             .resizable()
                             .scaledToFit()
                             .frame(width: size.imageSize, height: size.imageSize)
                     }
+                case .right:
+                    if let icon {
+                        icon
+                            .resizable()
+                            .scaledToFit()
+                            .frame(width: size.imageSize, height: size.imageSize)
+                    }
+                    Text(title)
                 }
                 
  
@@ -64,31 +64,55 @@ struct PrimaryButton: View {
     }
 }
 
-#Preview("PrimaryButton") {
+#Preview("PrimaryButton · States") {
     VStack(spacing: 16) {
 
-        
-        PrimaryButton("Continuar", buttonColor: Color.appButton, icon: Image(systemName: "arrow.right")) {
-            print("Mediano")
-        }
-        
-        PrimaryButton("Pequeño", size: .large, icon: Image(systemName: "apple.logo"), iconPosition: .right) {
-            print("Pequeño")
-        }
-        
-        PrimaryButton("Grande", size: .large) {
-            print("grande") }
-        
-        
+        PrimaryButton("Continuar") { }
+
         PrimaryButton(
-            "Grande",
-            size: .small,
-            icon: Image(systemName: "heart.fill"),
-            isDisable: true,
-            action: {
-                print("Prueba")
-            }
-        )
+            "Continuar",
+            buttonColor: .appButton,
+            icon: Image(systemName: "arrow.right")
+        ) { }
+
+        PrimaryButton(
+            "Deshabilitado",
+            icon: Image(systemName: "lock.fill"),
+            isDisable: true
+        ) { }
+
+    }
+    .padding()
+}
+
+#Preview("PrimaryButton · Sizes") {
+    VStack(spacing: 16) {
+
+        PrimaryButton("Small", size: .small) { }
+
+        PrimaryButton("Medium", size: .medium) { }
+
+        PrimaryButton("Large", size: .large) { }
+
+    }
+    .padding()
+}
+
+#Preview("PrimaryButton · Icon Position") {
+    VStack(spacing: 16) {
+
+        PrimaryButton(
+            "Left Icon",
+            icon: Image(systemName: "arrow.left"),
+            iconPosition: .left
+        ) { }
+
+        PrimaryButton(
+            "Right Icon",
+            icon: Image(systemName: "arrow.right"),
+            iconPosition: .right
+        ) { }
+
     }
     .padding()
 }
