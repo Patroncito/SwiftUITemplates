@@ -45,7 +45,15 @@ extension ComponentSize {
         switch self {
         case .small: 10
         case .medium: 14
-        case .large : 18
+        case .large : 20
+        }
+    }
+    
+    var imageSize : CGFloat {
+        switch self {
+        case .small: 20
+        case .medium: 24
+        case .large : 28
         }
     }
 }
