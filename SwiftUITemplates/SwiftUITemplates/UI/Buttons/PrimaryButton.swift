@@ -103,14 +103,23 @@ struct PrimaryButton: View {
 
         PrimaryButton(
             "Left Icon",
+            size: .small,
             icon: Image(systemName: "arrow.left"),
             iconPosition: .left
         ) { }
 
         PrimaryButton(
             "Right Icon",
+            size: .medium,
             icon: Image(systemName: "arrow.right"),
             iconPosition: .right
+        ) { }
+        
+        PrimaryButton(
+            "Extra Icon",
+            size: .large,
+            icon: Image(systemName: "arrow.right"),
+            iconPosition: .left
         ) { }
 
     }
